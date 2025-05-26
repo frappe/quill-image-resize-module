@@ -1,5 +1,5 @@
 {
-  "name": "quill-image-resize",
+  "name": "frappe-quill-image-resize",
   "version": "3.0.9",
   "description": "A module for Quill rich text editor to allow images to be resized.",
   "main": "image-resize.min.js",
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Etoile984816138/quill-image-resize-module.git"
+    "url": "git+https://github.com/frappe/quill-image-resize-module.git"
   },
   "keywords": [
     "quill",
@@ -21,18 +21,11 @@
     "resize",
     "sizer"
   ],
-  "author": "@kensnyder",
-  "contributors": [
-    {
-      "name": "Wikia",
-      "url": "https://github.com/Wikia"
-    }
-  ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Etoile984816138/quill-image-resize-module/issues"
+    "url": "https://github.com/frappe/quill-image-resize-module/issues"
   },
-  "homepage": "https://github.com/Etoile984816138/quill-image-resize-module#readme",
+  "homepage": "https://github.com/frappe/quill-image-resize-module#readme",
   "devDependencies": {
     "babel-cli": "^6.24.0",
     "babel-eslint": "^7.2.1",

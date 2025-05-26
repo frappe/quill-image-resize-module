@@ -7,6 +7,8 @@ import { BaseModule } from './BaseModule';
 const Parchment = Quill.imports.parchment;
 const FloatStyle = new Parchment.Attributor.Style('float', 'float');
 const MarginStyle = new Parchment.Attributor.Style('margin', 'margin');
+const MarginLeftStyle = new Parchment.Attributor.Style('margin-left', 'margin-left');
+const MarginRightStyle = new Parchment.Attributor.Style('margin-right', 'margin-right');
 const DisplayStyle = new Parchment.Attributor.Style('display', 'display');
 
 const offsetAttributor = new Parchment.Attributor.Attribute('nameClass', 'class', {
@@ -38,32 +40,27 @@ export class Toolbar extends BaseModule {
             {
                 icon: IconAlignLeft,
                 apply: () => {
-                    DisplayStyle.add(this.img, 'inline');
-                    FloatStyle.add(this.img, 'left');
-					MarginStyle.add(this.img, '0 1em 1em 0');
-					this.img.align = 'left';
+					this._makeBlock()
+					MarginRightStyle.add(this.img, "auto")
                 },
-                isApplied: () => FloatStyle.value(this.img) == 'left',
+                isApplied: () => (MarginRightStyle.value(this.img) == 'auto' && MarginLeftStyle.value(this.img) !== 'auto'),
             },
             {
                 icon: IconAlignCenter,
                 apply: () => {
-                    DisplayStyle.add(this.img, 'block');
-                    FloatStyle.remove(this.img);
-					MarginStyle.add(this.img, 'auto');
-					this.img.align = 'center';
+					this._makeBlock()
+					MarginRightStyle.add(this.img, "auto")
+					MarginLeftStyle.add(this.img, "auto")
                 },
-                isApplied: () => MarginStyle.value(this.img) == 'auto',
+                isApplied: () => (MarginLeftStyle.value(this.img) == 'auto' &&  MarginRightStyle.value(this.img) == 'auto'),
             },
             {
                 icon: IconAlignRight,
                 apply: () => {
-                    DisplayStyle.add(this.img, 'inline');
-                    FloatStyle.add(this.img, 'right');
-					MarginStyle.add(this.img, '0 0 1em 1em');
-					this.img.align = 'right';
+					this._makeBlock()
+					MarginLeftStyle.add(this.img, "auto")
                 },
-                isApplied: () => FloatStyle.value(this.img) == 'right',
+                isApplied: () => (MarginLeftStyle.value(this.img) == 'auto' && MarginRightStyle.value(this.img) !== 'auto'),
             },
         ];
     };
@@ -79,12 +76,10 @@ export class Toolbar extends BaseModule {
 				buttons.forEach(button => button.style.filter = '');
 				if (alignment.isApplied()) {
 						// If applied, unapply
-					FloatStyle.remove(this.img);
-					MarginStyle.remove(this.img);
-					DisplayStyle.remove(this.img);
+					this._unApplyStyles()
 				}else {
-						// otherwise, select button and apply
 					this._selectButton(button);
+					this._unApplyStyles()
 					alignment.apply();
 				}
 					// image may change position; redraw drag handles
@@ -102,9 +97,15 @@ export class Toolbar extends BaseModule {
 			this.toolbar.appendChild(button);
 		});
     };
-
+	_unApplyStyles(){
+		MarginLeftStyle.remove(this.img);
+		MarginRightStyle.remove(this.img);
+		DisplayStyle.remove(this.img);
+	}
     _selectButton = (button) => {
 		button.style.filter = 'invert(20%)';
     };
-
+	_makeBlock(){
+		DisplayStyle.add(this.img,"block")
+	}
 }
