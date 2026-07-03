@@ -8,6 +8,14 @@ module.exports = {
         libraryTarget: 'umd',
         filename: "image-resize.min.js"
     },
+    externals: {
+        quill: {
+            root: 'Quill',
+            commonjs: 'quill',
+            commonjs2: 'quill',
+            amd: 'quill'
+        }
+    },
     module: {
         rules: [
             {

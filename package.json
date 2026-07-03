@@ -1,6 +1,6 @@
 {
   "name": "frappe-quill-image-resize",
-  "version": "4.0.0",
+  "version": "4.0.2",
   "description": "A module for Quill rich text editor to allow images to be resized.",
   "main": "image-resize.min.js",
   "scripts": {

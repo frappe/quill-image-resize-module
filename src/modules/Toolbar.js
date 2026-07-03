@@ -5,13 +5,13 @@ import IconAlignRight from 'quill/assets/icons/align-right.svg';
 import { BaseModule } from './BaseModule';
 
 const Parchment = Quill.imports.parchment;
-const FloatStyle = new Parchment.Attributor.Style('float', 'float');
-const MarginStyle = new Parchment.Attributor.Style('margin', 'margin');
-const MarginLeftStyle = new Parchment.Attributor.Style('margin-left', 'margin-left');
-const MarginRightStyle = new Parchment.Attributor.Style('margin-right', 'margin-right');
-const DisplayStyle = new Parchment.Attributor.Style('display', 'display');
+const FloatStyle = new Parchment.StyleAttributor('float', 'float');
+const MarginStyle = new Parchment.StyleAttributor('margin', 'margin');
+const MarginLeftStyle = new Parchment.StyleAttributor('margin-left', 'margin-left');
+const MarginRightStyle = new Parchment.StyleAttributor('margin-right', 'margin-right');
+const DisplayStyle = new Parchment.StyleAttributor('display', 'display');
 
-const offsetAttributor = new Parchment.Attributor.Attribute('nameClass', 'class', {
+const offsetAttributor = new Parchment.Attributor('nameClass', 'class', {
 	scope: Parchment.Scope.INLINE,
 });
 
